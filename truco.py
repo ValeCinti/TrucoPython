@@ -7,9 +7,16 @@ valores_truco = {'4 espada': 1, '4 oro': 1, '4 basto': 1, '4 copa': 1,
                  '12 espada': 7, '12 oro': 7, '12 basto': 7, '12 copa': 7,
                  '2 espada': 9, '2 oro': 9, '2 basto': 9, '2 copa': 9,
                  '3 espada': 10, '3 oro': 10, '3 basto': 10, '3 copa': 10,
-                 '1 espada': 14, '1 oro': 8, '1 basto': 13, '1 copa': 8,
-                 }
+                 '1 espada': 14, '1 oro': 8, '1 basto': 13, '1 copa': 8}
 
-def obtener_valores_truco(carta):
+def obtener_valores_truco(carta): #Devuelve el valor asociado a la carta.
     valor_truco_carta = valores_truco[carta]
     return valor_truco_carta
+
+def comparar_cartas_truco(carta_jugador, carta_rival): #Devuelve True si gana la ronda, Flase si la pierde, o None si emparda.
+    if obtener_valores_truco(carta_jugador) > obtener_valores_truco(carta_rival):
+        return True
+    elif obtener_valores_truco(carta_jugador) < obtener_valores_truco(carta_rival):
+        return False
+    else:
+        return None
