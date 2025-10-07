@@ -8,14 +8,13 @@ def umbral(u): #Tiene u% de probabilidad de devolver True
     else:
         return False
 
-def elegir_carta(carta_jugador,valores_rival,palos_rival): #El bot elige una carta segun le conviene.
-    cartas_rival, valores_cartas_rival = [], []
-    for x in range(len(valores_rival)):
-        cartas_rival.append(f'{str(valores_rival[x])} {str(palos_rival[x])}')
-        valores_cartas_rival.append(obtener_valores_truco(cartas_rival[x]))
-    
+def elegir_carta_rival(carta_jugador,cartas_rival): #El bot elige una carta segun le conviene.
+    valores_cartas_rival = []
+    for carta in cartas_rival:
+        valores_cartas_rival.append(obtener_valores_truco(carta))
+
     if carta_jugador == False: #Si el bot es mano...
-        carta_elegida = random.choice(cartas_rival)
+        carta_elegida = random.choice(valores_cartas_rival)
 
     else: #Si el bot es pie...
         valor_carta_jugador = obtener_valores_truco(f'{carta_jugador}')
@@ -23,7 +22,7 @@ def elegir_carta(carta_jugador,valores_rival,palos_rival): #El bot elige una car
         if max(valores_cartas_rival) > valor_carta_jugador: #Si puede, hace primera.
             carta_elegida = max(valores_cartas_rival)
             for carta in valores_cartas_rival: #Si puede, evita usar la mas alta para hacer primera.
-                if carta > valor_carta_jugador and carta < max(valores_cartas_rival):
+                if carta > valor_carta_jugador and carta < carta_elegida:
                     carta_elegida = carta
 
         elif max(valores_cartas_rival) < valor_carta_jugador: #Si no puede ganar ni empardar, tira la mas baja.

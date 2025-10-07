@@ -13,10 +13,10 @@ def obtener_valores_truco(carta): #Devuelve el valor asociado a la carta.
     valor_truco_carta = valores_truco[carta]
     return valor_truco_carta
 
-def comparar_cartas_truco(carta_jugador, carta_rival): #Devuelve True si gana la ronda, Flase si la pierde, o None si emparda.
+def comparar_cartas_truco(carta_jugador, carta_rival): #Devuelve True si gana la mano, False si la pierde, o None si emparda.
     if obtener_valores_truco(carta_jugador) > obtener_valores_truco(carta_rival):
-        return True
+        return 'gana'
     elif obtener_valores_truco(carta_jugador) < obtener_valores_truco(carta_rival):
-        return False
+        return 'pierde'
     else:
-        return None
+        return 'emparda'

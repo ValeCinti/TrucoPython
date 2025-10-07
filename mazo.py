@@ -8,30 +8,24 @@ def crear_mazo(): #Genera un mazo mezclado aleatoriamente.
     return mazo
 
 def repartir_cartas(mazo): #Reparte 3 cartas a cada jugador.
-    valores_jugador, palos_jugador, valores_rival, palos_rival = [], [], [], []
+    cartas_jugador, cartas_rival = [], []
     for x in range(3):
-        valores_jugador.append(mazo[len(mazo)-1].split()[0])
-        palos_jugador.append(mazo[len(mazo)-1].split()[1])
+        cartas_jugador.append(mazo[-1])
         mazo.pop()
-        valores_rival.append(mazo[len(mazo)-1].split()[0])
-        palos_rival.append(mazo[len(mazo)-1].split()[1])
+        cartas_rival.append(mazo[-1])
         mazo.pop()
-    return valores_jugador, palos_jugador, valores_rival, palos_rival
+    return cartas_jugador, cartas_rival
 
-def mostrar_cartas(valores_jugador, palos_jugador, valores_rival, palos_rival): #Imprime las cartas restantes.
+def mostrar_cartas(cartas_jugador, cartas_rival): #Imprime las cartas restantes.
+    print('\n-----------')
     print('Tus cartas:')
-    for x in range(len(valores_jugador)):
-        print(f'{x+1}: {valores_jugador[x]} de {palos_jugador[x]}')
-    print()
-    print('Cartas del rival:')
-    for x in range(len(valores_rival)):
-        print(f'{x+1}: {valores_rival[x]} de {palos_rival[x]}')
+    for x in range(len(cartas_jugador)):
+        print(f'{x+1}: {cartas_jugador[x].split()[0]} de {cartas_jugador[x].split()[1]}')
+    print('\nCartas del rival:')
+    for x in range(len(cartas_rival)):
+        print(f'{x+1}: {cartas_rival[x].split()[0]} de {cartas_rival[x].split()[1]}')
+    print('-----------')
 
-def eliminar_carta_usada(valores,palos,carta): #Elimina la carta tirada
-    
-    for x in range(len(valores)-1):
-        if (f'{valores[x]} {palos[x]}') == carta:
-            valores.pop(x)
-            palos.pop(x)
-    
-    return valores, palos
+def eliminar_carta_usada(cartas, carta_usada): #Elimina la carta usada
+    cartas.remove(carta_usada)
+    return cartas
