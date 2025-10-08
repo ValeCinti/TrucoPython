@@ -29,3 +29,16 @@ def mostrar_cartas(cartas_jugador, cartas_rival): #Imprime las cartas restantes.
 def eliminar_carta_usada(cartas, carta_usada): #Elimina la carta usada
     cartas.remove(carta_usada)
     return cartas
+
+def sumar_puntos(puntos,resultado):
+    referencia_puntos = {'truco no jugado': 1, 'truco': 2, 'retruco': 3, 'valecuatro': 4,
+                         'envido no querido': 1, 'envido': 2, 'realenvido': 3, 'envido envido': 4, 'envido realenvido': 5, 'envido envido realenvido': 7}
+    puntos += referencia_puntos[resultado]
+    return puntos
+
+def mostrar_puntos(puntos_jugador, puntos_rival):
+    print('\n---------')
+    print('Puntajes:')
+    print(f'Jugador: {puntos_jugador}')
+    print(f'Rival: {puntos_rival}')
+    print('---------')
