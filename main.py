@@ -6,15 +6,21 @@ from truco import comparar_cartas_truco
 def jugar_ronda(mano, puntos_jugador, puntos_rival):
     while puntos_jugador < 15 or puntos_rival < 15:
         mano = not mano
+        inicia = mano
         num_mano = 0
         resultados_manos = [0]*3
         mazo = crear_mazo()
         cartas_jugador, cartas_rival = repartir_cartas(mazo)
         ronda_finalizada = False
         while ronda_finalizada == False and num_mano < 3:
-            resultado = jugar_mano(cartas_jugador, cartas_rival, mano, num_mano)
+            resultado = jugar_mano(cartas_jugador, cartas_rival, inicia, num_mano)
             resultados_manos[num_mano] = resultado
             num_mano += 1
+            if resultado == 'gana':
+                inicia = True
+            elif resultado == 'pierde':
+                inicia = False
+            
             if resultados_manos.count('gana') > 1 or 'emparda' in resultados_manos and 'gana' in resultados_manos or resultados_manos.count('emparda') == 3 and mano:
                 puntos_jugador = sumar_puntos(puntos_jugador, 'truco no jugado')
                 ronda_finalizada = True
@@ -23,8 +29,8 @@ def jugar_ronda(mano, puntos_jugador, puntos_rival):
                 ronda_finalizada = True
         mostrar_puntos(puntos_jugador, puntos_rival)
 
-def jugar_mano(cartas_jugador, cartas_rival, mano, num_mano):
-    if mano:
+def jugar_mano(cartas_jugador, cartas_rival, inicia, num_mano):
+    if inicia:
         mostrar_cartas(cartas_jugador, cartas_rival)
         carta_jugador = elegir_carta_jugador(cartas_jugador)
         print(f'\nTiraste {carta_jugador.split()[0]} de {carta_jugador.split()[1]}.')
