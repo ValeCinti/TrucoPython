@@ -5,7 +5,7 @@ def elegir_opcion(cartas, mano_actual):
         if mano_actual == 1:
             opciones = ['envido', 'real envido', 'falta envido']
         try:
-            eleccion = input("\nÍndice de la carta a jugar: ")
+            eleccion = input("\nÍndice de la carta a jugar: ").lower().strip()
             if eleccion.isnumeric():
                 eleccion = int(eleccion)
                 if eleccion < 1 or eleccion > len(cartas):

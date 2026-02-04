@@ -45,11 +45,13 @@ class Rival(Jugador):
                         decision_empardar = True
                         print(f"No me queda otra que empardar. Voy a jugar un {carta_elegida}.")
                     case 1:
-                        mejor_restante = cartas_restantes[0]
+                        mejor_restante = cartas_restantes[0].valor_truco
+                        probabilidad = mejor_restante * 0.07
+                        decision_empardar = tirar_dado(probabilidad)
                     case 2:
                         mejor_restante = cartas_restantes[0].valor_truco if cartas_restantes[0].valor_truco > cartas_restantes[1].valor_truco else cartas_restantes[1].valor_truco
-                probabilidad = mejor_restante * 0.07
-                decision_empardar = tirar_dado(probabilidad)
+                        probabilidad = mejor_restante * 0.07
+                        decision_empardar = tirar_dado(probabilidad)
                 
                 if not decision_empardar:
                     for carta in cartas_restantes:

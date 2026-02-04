@@ -1,7 +1,9 @@
 from partida import Partida
+from colorama import init, Fore
+init(autoreset=True)
 
 def main():
-    print("\n----------Truco----------")
+    print(Fore.YELLOW + "\n----------Truco----------")
     juego = Partida()
     juego.jugar_partida()
 
